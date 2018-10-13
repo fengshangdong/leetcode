@@ -49,7 +49,7 @@ private:
 	};
 
 	/* 判断字典中字符串是否只有一位不同 */
-	static bool graph_connect(string str1, string str2)
+	static bool graph_connect(string& str1, string& str2)
 	{
 		int count = 0;
 		for (int i = 0; i < str1.size(); i++)
