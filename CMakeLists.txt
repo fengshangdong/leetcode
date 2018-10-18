@@ -13,6 +13,7 @@ string(REPLACE ":" " " CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
  
 add_executable(053_maximum-subarray_DP					053_maximum-subarray_DP.cpp)
+add_executable(064_minimum-path-sum_DP					064_minimum-path-sum_DP.cpp)
 add_executable(070_climbing-stairs_DP					070_climbing-stairs_DP.cpp)
 add_executable(120_triangle_DP							120_triangle_DP.cpp)
 add_executable(126_word-ladder-ii_BFS					126_word-ladder-ii_BFS.cpp)
