@@ -15,6 +15,8 @@ public:
 		int max = dp[0];
 		for (int i = 0; i < dp.size(); i++) {
 			dp[i] = 1;
+			/* 双层for循环判断上升子序列 */
+			/* dp[i]存放数组 0..i 之间最长上升子序列的个数 */
 			for (int j = 0; j < i; j++) {
 				if (nums[j] < nums[i] && dp[i] < dp[j]+1)
 					dp[i] += 1;
