@@ -15,12 +15,10 @@ class Solution {
 public:
 	ListNode* reverseBetween(ListNode* head, int m, int n) {
 		/* 额外插入一个头结点,便于取前置结点prev */
-		ListNode *sentine = new ListNode(0);
-		sentine->next = head;
-		head = sentine;
-
-		/* res保留原头结点 */
-		ListNode *res = head;
+		ListNode res(0);
+		ListNode *res_ptr = &res;
+		res_ptr->next = head;
+		head = res_ptr;
 
 		/* prev为m位置的前置结点 */
 		ListNode *prev = head;
@@ -39,13 +37,12 @@ public:
 			head = next;
 		}
 
+		/* 连接前,中,后三个部分的链表  */
 		/* 此时的head是n位置的后置结点 */
 		prev->next = new_head;
 		new_tail->next = head;
 
-		res = res->next;
-		free(sentine);
-		return res;        
+		return res.next;        
 	}
 };
 
