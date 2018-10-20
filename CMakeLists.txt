@@ -12,6 +12,8 @@ string(REPLACE ":" " " CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
  
+add_executable(021_merge-two-sorted-lists				021_merge-two-sorted-lists.cpp)
+add_executable(023_merge-k-sorted-lists					023_merge-k-sorted-lists.cpp)
 add_executable(053_maximum-subarray_DP					053_maximum-subarray_DP.cpp)
 add_executable(064_minimum-path-sum_DP					064_minimum-path-sum_DP.cpp)
 add_executable(070_climbing-stairs_DP					070_climbing-stairs_DP.cpp)
