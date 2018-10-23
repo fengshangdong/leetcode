@@ -20,9 +20,6 @@ public:
 		if (lists.size() == 1) {
 			return lists[0];
 		}
-		if (lists.size() == 2) {
-			return mergeLists(lists[0], lists[1]);
-		}
 
 		/* 分治算法 - 类似于归并排序 */
 		vector<ListNode*> v1;
