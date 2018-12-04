@@ -18,29 +18,28 @@ public:
 		ListNode res(0);
 		ListNode *res_ptr = &res;
 		res_ptr->next = head;
-		head = res_ptr;
 
 		/* prev为m位置的前置结点 */
-		ListNode *prev = head;
+		ListNode *prev = NULL;
 		for (int i = 0; i < m; i++) {
-			prev = head;
-			head = prev->next;
+			prev = res_ptr;
+			res_ptr = res_ptr->next;
 		}
 		/* new_head是m..n的逆置后的头 */
 		/* new_tail是m..n的逆置后的尾 */
-		ListNode *new_tail = head;
+		ListNode *new_tail = res_ptr;
 		ListNode *new_head = NULL;
 		for (int j = m; j <= n; j++) {
-			ListNode *next = head->next;
-			head->next = new_head;
-			new_head = head;
-			head = next;
+			ListNode *next = res_ptr->next;
+			res_ptr->next = new_head;
+			new_head = res_ptr;
+			res_ptr = next;
 		}
 
 		/* 连接前,中,后三个部分的链表  */
 		/* 此时的head是n位置的后置结点 */
 		prev->next = new_head;
-		new_tail->next = head;
+		new_tail->next = res_ptr;
 
 		return res.next;        
 	}
@@ -59,10 +58,16 @@ int main()
 {
 	ListNode node1(1);
 	ListNode node2(2);
+	ListNode node3(3);
+	ListNode node4(4);
+	ListNode node5(5);
 	node1.next = &node2;
+	node2.next = &node3;
+	node3.next = &node4;
+	node4.next = &node5;
 	printList(&node1);
 
 	Solution solve;
-	ListNode *NewList = solve.reverseBetween(&node1, 1, 2);
+	ListNode *NewList = solve.reverseBetween(&node1, 2, 4);
 	printList(NewList);
 }
