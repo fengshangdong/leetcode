@@ -5,46 +5,46 @@ using namespace std;
 
 class MyStack {
 public:
-	/** Initialize your data structure here. */
-	MyStack() {
-	}
+  /** Initialize your data structure here. */
+  MyStack() {
+  }
 
-	/** Push element x onto stack. */
-	void push(int x) {
-		q1.push(x);
-	}
+  /** Push element x onto stack. */
+  void push(int x) {
+    q1.push(x);
+  }
 
-	/** Removes the element on top of the stack and returns that element. */
-	int pop() {
-		while (q1.size() != 1) {
-			int data = q1.front();
-			q1.pop();
-			q2.push(data);
-		}    
+  /** Removes the element on top of the stack and returns that element. */
+  int pop() {
+    while (q1.size() != 1) {
+      int data = q1.front();
+      q1.pop();
+      q2.push(data);
+    }    
 
-		while (!q2.empty()) {
-			int data = q2.front();
-			q2.pop();
-			q1.push(data);
-		}
+    while (!q2.empty()) {
+      int data = q2.front();
+      q2.pop();
+      q1.push(data);
+    }
 
-		int res = q1.front();
-		q1.pop();
-		return res;
-	}
+    int res = q1.front();
+    q1.pop();
+    return res;
+  }
 
-	/** Get the top element. */
-	int top() {
-		return q1.back();
-	}
+  /** Get the top element. */
+  int top() {
+    return q1.back();
+  }
 
-	/** Returns whether the stack is empty. */
-	bool empty() {
-		return q1.empty();
-	}
+  /** Returns whether the stack is empty. */
+  bool empty() {
+    return q1.empty();
+  }
 private:
-	queue<int> q1;
-	queue<int> q2;
+  queue<int> q1;
+  queue<int> q2;
 };
 
 /**
@@ -58,16 +58,16 @@ private:
 
 int main()
 {
-	MyStack stack;
-	for (int i = 1; i <= 5; i++) {
-		stack.push(i);
-		printf("%d ", stack.top());
-	}
-	printf("\n");
+  MyStack stack;
+  for (int i = 1; i <= 5; i++) {
+    stack.push(i);
+    printf("%d ", stack.top());
+  }
+  printf("\n");
 
-	while (!stack.empty()) {
-		printf("%d ", stack.top());
-		stack.pop();
-	}
-	printf("\n");
+  while (!stack.empty()) {
+    printf("%d ", stack.top());
+    stack.pop();
+  }
+  printf("\n");
 }
