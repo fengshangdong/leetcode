@@ -22,7 +22,7 @@ public:
         diff --;
       }
     }
-    else if (b_len - a_len) {
+    else if (b_len > a_len) {
       int diff = b_len - a_len;
       while (diff) {
         headB = headB->next;

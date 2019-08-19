@@ -29,8 +29,8 @@ public:
 /* 打印链表 */
 void printNode(ListNode *head) {
   while(head) {
-    ListNode *next = head->next;
     printf("%d ", head->val);
+    ListNode *next = head->next;
     head = next;
   }
   printf("\n");

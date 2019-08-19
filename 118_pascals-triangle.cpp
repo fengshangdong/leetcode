@@ -10,10 +10,8 @@ public:
     for (int i = 0; i < numRows; i++) {
       res[i].resize(i+1);
       res[i][0] = res[i][i] = 1;
-      for(int j = 1; j < i; j++){
-        /* 第i行需要计算的j下标为 1..i-1 */
-        res[i][j] = res[i-1][j-1]+res[i-1][j];
-      }
+      for(int j = 1; j < i; j++)
+        res[i][j] = res[i-1][j-1]+res[i-1][j]; /* 第i行需要计算的j下标为 1..i-1 */ 
     }
 
     return res;
@@ -22,7 +20,7 @@ public:
 
 int main()
 {
-  int n = 5;
+  int n = 8;
   Solution solve;
   vector<vector<int> > res = solve.generate(n);
   for (int i = 0; i < res.size(); i++) {
