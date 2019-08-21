@@ -28,17 +28,11 @@ public:
 
 private:
   bool is_left(char c) {
-    if (c == '(' || c == '[' || c == '{')
-      return true;
-    else
-      return false;
+    return (c == '(' || c == '[' || c == '{');
   }
 
   bool is_eq(char c1, char c2) {
-    if ((c1 == '(' && c2 == ')') || (c1 == '[' && c2 ==']') || (c1 == '{' && c2 == '}'))
-      return true;
-    else
-      return false;
+    return ((c1 == '(' && c2 == ')') || (c1 == '[' && c2 ==']') || (c1 == '{' && c2 == '}'));
   }
 };
 

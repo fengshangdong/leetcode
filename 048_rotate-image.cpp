@@ -2,6 +2,7 @@
 #include <stdio.h>
 using namespace std;
 
+/* 先上下交换再对角交换 */
 class Solution {
 public:
   void rotate(vector<vector<int> >& matrix) {

@@ -15,18 +15,17 @@ public:
     int a_len = listLength(headA);
     int b_len = listLength(headB);
 
-    if (a_len > b_len) {
-      int diff = a_len - b_len;
+    int diff = a_len - b_len;
+    if (diff > 0) {
       while (diff) {
         headA = headA->next;
         diff --;
       }
     }
-    else if (b_len > a_len) {
-      int diff = b_len - a_len;
+    else if (diff < 0) {
       while (diff) {
         headB = headB->next;
-        diff --;
+        diff ++;
       }
     }
 

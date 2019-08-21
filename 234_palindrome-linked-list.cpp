@@ -20,44 +20,28 @@ class Solution {
 public:
   bool isPalindrome(ListNode* head) {
     if (!head) return true;
-    if (!head->next) return true;
 
-    int len = listLen(head);
-    int half = (len+1)/2;
-    ListNode* halfHead = head;
-    while (half) {
-      halfHead = halfHead->next;
-      half--;
+    ListNode *slow = head, *fast = head;
+    while (slow && fast && fast->next) {
+      slow = slow->next;
+      fast = fast->next->next;
     }
 
-    ListNode* rhalfHead = reverse(halfHead);
-    while (rhalfHead) {
-      if (head->val != rhalfHead->val) return false;
+    ListNode *new_head = NULL, *rhead = slow;
+    while (rhead) {
+      ListNode *next = rhead->next;
+      rhead->next = new_head;
+      new_head = rhead;
+      rhead = next;
+    }
+
+    while (head && new_head) {
+      if (head->val != new_head->val) return false;
       head = head->next;
-      rhalfHead = rhalfHead->next;
+      new_head = new_head->next;
     }
 
     return true;
-  }
-
-  ListNode* reverse(ListNode* head) {
-    ListNode* newHead = NULL;
-    while (head) {
-      ListNode* next = head->next;
-      head->next = newHead;
-      newHead = head;
-      head = next;
-    }
-    return newHead;
-  }
-
-  int listLen(ListNode* head) {
-    int len = 0;
-    while (head) {
-      len++;
-      head = head->next;
-    }
-    return len;
   }
 };
 

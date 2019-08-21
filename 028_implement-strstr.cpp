@@ -21,10 +21,10 @@ public:
       }
     }
 
-    if(j == needle.length())
-      return i-j;
-    else 
-      return i-j;
+    if (len1-len2 < i-j)
+      return -1;
+
+    return i-j;
   }
 private:
   vector<int> _next(string s){

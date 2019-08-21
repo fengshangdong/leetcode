@@ -12,6 +12,7 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+/* 中序遍历,提前终止 */
 class Solution {
 private:
   int res;

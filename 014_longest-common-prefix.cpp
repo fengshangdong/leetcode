@@ -34,12 +34,11 @@ private:
     if (left == right) {
       return strs[left];
     }
-    else {
-      int mid = (left + right)/2;
-      string lcpLeft =  _longestCommonPrefix(strs, left , mid);
-      string lcpRight = _longestCommonPrefix(strs, mid + 1,right);
-      return commonPrefix(lcpLeft, lcpRight);
-    }
+
+    int mid = (left + right)/2;
+    string lcpLeft =  _longestCommonPrefix(strs, left , mid);
+    string lcpRight = _longestCommonPrefix(strs, mid + 1,right);
+    return commonPrefix(lcpLeft, lcpRight);
   }
 
   string commonPrefix(string strleft, string strright) {
