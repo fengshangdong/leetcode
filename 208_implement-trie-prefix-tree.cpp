@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+/* 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作 */
+
 struct Node {
   int num;
   bool isword;
@@ -33,7 +35,6 @@ public:
     Node* p = root;
     for(int i = 0; i < word.size(); ++i){
       if(p->child[word[i]-'a'] == NULL){
-        Node *node = new Node();
         p->child[word[i]-'a'] = new Node();
       }
       p = p->child[word[i]-'a'];

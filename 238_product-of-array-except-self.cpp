@@ -2,6 +2,7 @@
 #include <stdio.h>
 using namespace std;
 
+/* 除自身以外数组的乘积 */
 class Solution {
 public:
   vector<int> productExceptSelf(vector<int>& nums) {

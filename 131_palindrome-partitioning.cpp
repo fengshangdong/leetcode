@@ -1,3 +1,6 @@
+/* 给定一个字符串 s，将 s 分割成一些子串，使每个子串都是回文串。
+ * 返回 s 所有可能的分割方案。*/
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -12,28 +15,29 @@ public:
     return res;
   }
 
-  void dfs(string s, vector<string>& curr){
-    if(s.empty()){
+  void dfs(string s, vector<string>& curr) {
+    if (s.empty()) {
       res.push_back(curr);
+      return;
     }
-    else{
-      for(int i = 1; i <= s.size(); ++i){
-        string temp = s.substr(0,i);
-        if(check(temp)){
-          curr.push_back(temp);
-          dfs(s.substr(i,s.size()), curr);
-          curr.pop_back();
-        }
+
+    for (int i = 1; i <= s.length(); i++) {
+      string temp = s.substr(0, i);
+      if (check(temp)) {
+        curr.push_back(temp);
+        dfs(s.substr(i, s.length()), curr);
+        curr.pop_back();
       }
     }
   }
 
-  bool check(string& s){
-    int head = 0;
-    int tail = s.size()-1;
-    while(head < tail){
-      if(s[head++] != s[tail--]) return false;
+  bool check(string& str) {
+    int beg = 0, end = str.length()-1;
+    while (beg < end) {
+      if (str[beg++] != str[end--])
+        return false;
     }
+
     return true;
   }
 };

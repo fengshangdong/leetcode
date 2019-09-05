@@ -17,14 +17,14 @@ public:
   TreeNode* build(vector<int>& preorder, int pleft, int pright, vector<int>& inorder, int ileft, int iright) {
     if (pleft>pright||ileft>iright) return NULL;
 
-    int i = 0;
-    for (i = ileft; i<= iright; ++i) {
-      if (inorder[i] == preorder[pleft]) break;
+    int mid = 0; // mid是中序的根结点位置
+    for (mid = ileft; mid<= iright; ++mid) {
+      if (inorder[mid] == preorder[pleft]) break;
     }
 
     TreeNode *p = new TreeNode(preorder[pleft]);
-    p->left = build(preorder, pleft+1, pleft+i-ileft, inorder, ileft, i-1);
-    p->right = build(preorder, pleft+i-ileft+1, pright, inorder, i+1, iright);    
+    p->left = build(preorder, pleft+1, pleft+(mid-ileft), inorder, ileft, mid-1);
+    p->right = build(preorder, pleft+(mid-ileft)+1, pright, inorder, mid+1, iright);    
 
     return p;
   }

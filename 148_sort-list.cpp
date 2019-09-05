@@ -40,6 +40,7 @@ public:
         pre = pre->next;
       }
     }
+
     if (!left) pre->next = right;
     if (!right) pre->next = left;
     return head.next;

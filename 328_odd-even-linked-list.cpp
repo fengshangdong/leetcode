@@ -20,7 +20,7 @@ public:
       odd->next = even->next;
       odd = odd->next;
       even->next = odd->next;
-      if (odd->next) {
+      if (even->next) {
         even = even->next;
       }
     }
