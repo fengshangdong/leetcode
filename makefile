@@ -2,7 +2,7 @@ CC= g++
 LIB =
 LIB_DIR =
 LDFLAGS =
-CFLAGS = -g
+CFLAGS = -g -std=gnu++0x
 
 FILE_SUFFIX = cpp
 SRCS := $(wildcard *.$(FILE_SUFFIX))
