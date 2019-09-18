@@ -1,5 +1,6 @@
 #include<set>
 #include<map>
+#include<unordered_map>
 #include<vector>
 #include<queue>
 #include<string>
@@ -11,65 +12,32 @@ using namespace std;
 class Solution {
 public:
   int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-    map<string, vector<string> > graph;
-    graph_construct(beginWord, endWord, wordList, graph);
-    return graph_BFS(beginWord, endWord, wordList, graph);
-  }
+    unordered_map<string,int> freqs;
+    for(int i = 0; i < wordList.size(); i++)
+      freqs[wordList[i]] = 0;
 
-private:
-  /* 判断字典中字符串是否只有一位不同 */
-  static bool graph_connect(string str1, string str2)
-  {
-    int count = 0;
-    for (int i = 0; i < str1.size(); i++)
-    {
-      if(str1[i] != str2[i])
-        count++;
-    }
-
-    return count == 1;
-  }
-
-  /* 将字典中只有一位不同的字符串俩俩连接成图 */
-  void graph_construct(string beginWord, string endWord, vector<string>& wordList, map<string, vector<string> >& graph)
-  {
-    wordList.push_back(beginWord);
-
-    for (int i = 0; i < wordList.size(); i++) {
-      for (int j = i+1; j < wordList.size(); j++) {
-        if (graph_connect(wordList[i], wordList[j])) {
-          graph[wordList[i]].push_back(wordList[j]);
-          graph[wordList[j]].push_back(wordList[i]);
+    if(freqs.count(endWord)==0) return 0;
+    queue<string> q1({beginWord}), q2({endWord});
+    int step=1;
+    for(freqs[beginWord]|=1,freqs[endWord]|=2; q1.size() && q2.size(); ++step){
+      bool first=q1.size()<q2.size();
+      queue<string> &q=first?q1:q2;
+      int flag=first?1:2;
+      for(int size=q.size(); size--; q.pop()){
+        string &word=q.front();
+        if(freqs[word]==3) return step;
+        for(int i=0; i<word.length(); ++i){
+          for(char ch='a'; ch<='z'; ++ch){
+            string s=word;
+            if(s[i]==ch) continue;
+            s[i]=ch;
+            if(freqs.count(s)==0 || freqs[s]&flag) continue;
+            freqs[s]|=flag;
+            q.push(s);
+          }
         }
       }
     }
-  }
-
-  /* 广度优先搜索图graphh得到最短距离 */
-  int graph_BFS(string beginWord, string endWord, vector<string>& wordList, map<string, vector<string> >& graph)
-  {
-    queue<pair<string, int> > Q;
-    Q.push(make_pair(beginWord, 1));
-    set<string> visit;
-    visit.insert(beginWord);
-
-    while(!Q.empty()) {
-      string& node = Q.front().first;
-      int step = Q.front().second;
-      Q.pop();
-
-      if (node == endWord)
-        return step;
-
-      vector<string>& neighbor = graph[node];
-      for (int i = 0; i < neighbor.size(); i++) {
-        if (visit.find(neighbor[i]) == visit.end()) {
-          visit.insert(neighbor[i]);
-          Q.push(make_pair(neighbor[i], step + 1));
-        }
-      }
-    }
-
     return 0;
   }
 };
